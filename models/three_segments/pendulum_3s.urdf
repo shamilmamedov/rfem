@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<robot name="flexible_arm">
+
+    <material name = "custom">
+        <color rgba = "0.596 0.564 0.572 1"/>
+    </material>
+
+    <!-- world -->
+    <link name="world"/>
+
+    <!-- flexible arm modeled using virtual link method -->
+    <link name="rfe_1">
+        <visual>
+            <geometry>
+                <cylinder radius="0.003" length="0.2" />
+            </geometry>
+            <origin rpy="0 1.57075 0" xyz ="0.1 0 0"/>
+            <material name = "custom"/>
+        </visual>
+        <inertial>
+            <origin xyz="0.1 0 0" rpy="0 0 0"/>
+            <mass value="0.015324688964211007" />
+            <inertia ixx="6.89611003e-08" ixy="0" ixz="0" iyy="5.11167771e-05" iyz="0" izz="5.11167771e-05" />
+        </inertial>
+    </link>
+
+    <joint name="active_joint" type="revolute">
+        <parent link="world"/>
+        <child link="rfe_1"/>
+        <axis xyz="0 0 1"/>
+        <origin xyz="0 0 0.5" rpy="1.57 0 0"/>
+        <limit effort="100.0" lower="-3.14159" upper="3.14159" velocity="3.14"/>
+    </joint>
+
+    <link name="rfe_2">
+        <visual>
+            <geometry>
+                <cylinder radius="0.003" length="0.4" />
+            </geometry>
+            <origin rpy="0 1.57075 0" xyz ="0.2 0 0"/>
+            <material name = "custom"/>
+        </visual>
+        <inertial>
+            <origin xyz="0.2 0 0" rpy="0 0 0"/>
+            <mass value="0.030649377928422015" />
+            <inertia ixx="1.37922201e-07" ixy="0" ixz="0" iyy="4.08727333e-04" iyz="0" izz="4.08727333e-04" />
+        </inertial>
+    </link>
+
+    <joint name="sde_joint_1" type="revolute">
+        <parent link="rfe_1"/>
+        <child link="rfe_2"/>
+        <axis xyz="0 0 1"/>
+        <origin xyz="0.2 0 0" rpy="0 0 0"/>
+        <limit effort="100.0" lower="-3.14159" upper="3.14159" velocity="3.14"/>
+    </joint>
+
+    <link name="rfe_3">
+        <visual>
+            <geometry>
+                <cylinder radius="0.003" length="0.4" />
+            </geometry>
+            <origin rpy="0 1.57075 0" xyz ="0.2 0 0"/>
+            <material name = "custom"/>
+        </visual>
+        <inertial>
+            <origin xyz="0.2 0 0" rpy="0 0 0"/>
+            <mass value="0.030649377928422015" />
+            <inertia ixx="1.37922201e-07" ixy="0" ixz="0" iyy="4.08727333e-04" iyz="0" izz="4.08727333e-04" />
+        </inertial>
+    </link>
+
+    <joint name="sde_joint_2" type="revolute">
+        <parent link="rfe_2"/>
+        <child link="rfe_3"/>
+        <axis xyz="0 0 1"/>
+        <origin xyz="0.4 0 0" rpy="0 0 0"/>
+        <limit effort="100.0" lower="-3.14159" upper="3.14159" velocity="3.14"/>
+    </joint>
+
+    <link name="rfe_4">
+        <visual>
+            <geometry>
+                <cylinder radius="0.003" length="0.2" />
+            </geometry>
+            <origin rpy="0 1.57075 0" xyz ="0.1 0 0"/>
+            <material name = "custom"/>
+        </visual>
+        <inertial>
+            <origin xyz="0.1 0 0" rpy="0 0 0"/>
+            <mass value="0.015324688964211007" />
+            <inertia ixx="6.89611003e-08" ixy="0" ixz="0" iyy="5.11167771e-05" iyz="0" izz="5.11167771e-05" />
+        </inertial>
+    </link>
+
+    <joint name="sde_joint_3" type="revolute">
+        <parent link="rfe_3"/>
+        <child link="rfe_4"/>
+        <axis xyz="0 0 1"/>
+        <origin xyz="0.4 0 0" rpy="0 0 0"/>
+        <limit effort="100.0" lower="-3.14159" upper="3.14159" velocity="3.14"/>
+    </joint>
+    
+    <link name="load">
+        <visual>
+            <geometry>
+                <sphere radius="0.02"/>
+            </geometry>
+            <origin rpy="0 0 0" xyz ="0.01 0 0"/>
+            <material name = "custom"/>
+        </visual>
+        <inertial>
+            <origin xyz="0.01 0 0" rpy="0 0 0"/>
+            <mass value="0.00" />
+            <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+        </inertial>
+    </link>
+
+    <joint name="rfe_4_to_load" type="fixed">
+        <parent link="rfe_4"/>
+        <child link="load"/>
+        <axis xyz="0 0 1"/>
+        <origin xyz="0.2 0 0" rpy="0 0 0"/>
+    </joint>
+
+</robot>

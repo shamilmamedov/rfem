@@ -1,0 +1,1 @@
+n_seg_int2str = {3: 'three', 5: 'five', 10: 'ten'}
