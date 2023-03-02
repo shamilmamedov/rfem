@@ -1,6 +1,4 @@
-import sys
 import numpy as np
-import pinocchio as pin
 
 from flexible_pendulum import FlexiblePendulum
 from simulation import simulate_flexible_pendulum
@@ -14,7 +12,7 @@ if __name__ == "__main__":
     n_sim_steps = 500
 
     # Instantiate the robot
-    n_seg = 10
+    n_seg = 3
     robot = FlexiblePendulum(n_seg)
 
     # Specify controller

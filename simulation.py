@@ -1,7 +1,5 @@
-import casadi as cs
 import numpy as np
 from scipy.integrate import solve_ivp
-from dataclasses import dataclass
 from typing import Callable, Tuple
 
 from flexible_pendulum import FlexiblePendulum
@@ -9,7 +7,7 @@ from flexible_pendulum import FlexiblePendulum
 
 def simulate_flexible_pendulum(
     robot: FlexiblePendulum,
-    controller,
+    controller: Callable[[np.ndarray, np.ndarray], np.ndarray],
     y_ref: np.ndarray,
     x0: np.ndarray,
     dt: float,
